@@ -1,4 +1,13 @@
 name: MikChanNoBadApple
 version: '${version}'
+
+authors: [ 'George Endo (MikChan / wtlgo)' ]
+description: Plays Bad Apple animation in the chat
+website: https://github.com/BadApple
+
+prefix: MCnBadApple
 main: dev.mikchan.mcnp.badapple.MikChanNoBadApple
 api-version: '1.20'
+
+libraries:
+  - org.jetbrains.kotlin:kotlin-stdlib:1.9.0

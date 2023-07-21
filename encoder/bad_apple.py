@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 # ffmpeg -i [input] -filter:v fps=fps=20 %0d.bmp
-DATA_PATH = "D:\\BadApple"
+DATA_PATH = ""
 IDEAL_HEIGHT = 20
 IDEAL_WIDTH = round(20 / 1080 * 1440)
 
