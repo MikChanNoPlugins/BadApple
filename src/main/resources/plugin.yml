@@ -1,0 +1,4 @@
+name: MikChanNoBadApple
+version: '${version}'
+main: dev.mikchan.mcnp.badapple.MikChanNoBadApple
+api-version: '1.20'
