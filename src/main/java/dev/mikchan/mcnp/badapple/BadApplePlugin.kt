@@ -28,10 +28,6 @@ class BadApplePlugin : JavaPlugin() {
                 try {
                     val frame = frame?.getComponents()
                     if (frame == null || subscribers.isEmpty()) {
-                        for (subscriber in subscribers) {
-                            subscriber.sendMessage("Done")
-                        }
-
                         unload()
                         return@scheduleSyncRepeatingTask
                     }
