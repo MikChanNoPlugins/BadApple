@@ -6,7 +6,7 @@ description: Plays Bad Apple animation in the chat
 website: https://github.com/BadApple
 
 prefix: MCnBadApple
-main: dev.mikchan.mcnp.badapple.MikChanNoBadApple
+main: dev.mikchan.mcnp.badapple.BadApplePlugin
 api-version: '1.20'
 
 libraries:
