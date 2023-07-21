@@ -33,6 +33,8 @@ class BadApplePlugin : JavaPlugin() {
                         subscriber.spigot().sendMessage(*row)
                     }
                 }
+
+                frameCounter += 1
             }, 1, 1)
         }
     }
