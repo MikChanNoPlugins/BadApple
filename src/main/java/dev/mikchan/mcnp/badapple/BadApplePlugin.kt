@@ -1,13 +1,16 @@
+@file:OptIn(ExperimentalUnsignedTypes::class)
+
 package dev.mikchan.mcnp.badapple
 
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
+import java.util.logging.Level
 
 @Suppress("unused")
 class BadApplePlugin : JavaPlugin() {
     private val commandManager: CommandManager by lazy { CommandManager(this) }
 
-    private var data: ByteArray? = null
+    private var data: UByteArray? = null
     private var subscribers = emptySet<Player>()
     private var taskId: Int? = null
 
@@ -18,23 +21,30 @@ class BadApplePlugin : JavaPlugin() {
         if (data != null) return
 
         val resource = getResource("bad_apple.dat")
-        data = resource?.readAllBytes()
+        data = resource?.readAllBytes()?.toUByteArray()
 
         if (taskId == null) {
             taskId = server.scheduler.scheduleSyncRepeatingTask(this, {
-                val frame = frame?.getComponents()
-                if (frame == null || subscribers.isEmpty()) {
-                    unload()
-                    return@scheduleSyncRepeatingTask
-                }
+                try {
+                    val frame = frame?.getComponents()
+                    if (frame == null || subscribers.isEmpty()) {
+                        for (subscriber in subscribers) {
+                            subscriber.sendMessage("Done")
+                        }
 
-                for (subscriber in subscribers) {
-                    for (row in frame) {
-                        subscriber.spigot().sendMessage(*row)
+                        unload()
+                        return@scheduleSyncRepeatingTask
                     }
-                }
 
-                frameCounter += 1
+                    for (subscriber in subscribers) {
+                        subscriber.spigot().sendMessage(*frame)
+                    }
+
+                    frameCounter += 1
+                } catch (exception: Exception) {
+                    logger.log(Level.SEVERE, "Oh no!", exception)
+                    unload()
+                }
             }, 1, 1)
         }
     }
@@ -42,7 +52,9 @@ class BadApplePlugin : JavaPlugin() {
     private fun unload() {
         data = null
         taskId?.let { server.scheduler.cancelTask(it) }
+        taskId = null
         subscribers = emptySet()
+        frameCounter = 0
     }
 
     fun start(player: Player) {
