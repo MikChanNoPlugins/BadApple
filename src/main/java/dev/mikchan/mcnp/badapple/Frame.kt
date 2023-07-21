@@ -32,15 +32,7 @@ internal class Frame private constructor(
                 val idx = offset + width * h + w
                 val value = data[idx].toInt()
 
-                val col: ChatColor = if (value < 10) {
-                    ChatColor.BLACK
-                } else if (value > 250) {
-                    ChatColor.WHITE
-                } else {
-                    ChatColor.of(Color(value, value, value))
-                }
-
-                row.append("█").color(col)
+                row.append("█").color(ChatColor.of(Color(value, value, value)))
             }
 
             row.append("\n")
