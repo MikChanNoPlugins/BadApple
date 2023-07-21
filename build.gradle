@@ -73,12 +73,12 @@ processResources {
 }
 compileKotlin {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = targetJavaVersion
     }
 }
 compileTestKotlin {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = targetJavaVersion
     }
 }
 
@@ -89,6 +89,6 @@ shadowJar {
         include(dependency("co.aikar:acf-paper"))
     }
 
-    relocate "co.aikar.commands", "dev.mikchan.mcns.utility.shadow.co.aikar.commands"
-    relocate "co.aikar.locales", "dev.mikchan.mcns.utility.shadow.co.aikar.locales"
+    relocate "co.aikar.commands", "dev.mikchan.mcnp.badapple.shadow.co.aikar.commands"
+    relocate "co.aikar.locales", "dev.mikchan.mcnp.badapple.shadow.co.aikar.locales"
 }

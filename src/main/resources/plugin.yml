@@ -9,5 +9,11 @@ prefix: MCnBadApple
 main: dev.mikchan.mcnp.badapple.BadApplePlugin
 api-version: '1.20'
 
+permissions:
+  mcn.bad-apple.start:
+    default: true
+  mcn.bad-apple.stop:
+    default: true
+
 libraries:
   - org.jetbrains.kotlin:kotlin-stdlib:1.9.0
