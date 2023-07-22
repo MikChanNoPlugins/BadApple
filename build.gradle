@@ -92,3 +92,27 @@ shadowJar {
     relocate "co.aikar.commands", "dev.mikchan.mcnp.badapple.shadow.co.aikar.commands"
     relocate "co.aikar.locales", "dev.mikchan.mcnp.badapple.shadow.co.aikar.locales"
 }
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHub"
+            url = "https://maven.pkg.github.com/MikChanNoPlugins/BadApple"
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+
+    publications {
+        gpr(MavenPublication) {
+            groupId = group
+            artifactId = "bad-apple"
+
+            artifact jar
+            // artifact javadocJar
+            artifact sourcesJar
+        }
+    }
+}
