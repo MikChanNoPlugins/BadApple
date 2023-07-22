@@ -28,6 +28,8 @@ internal class Frame private constructor(
         val row = ComponentBuilder()
 
         for (h in 0 until height) {
+            row.append("     ")
+
             for (w in 0 until width) {
                 val idx = offset + width * h + w
                 val value = data[idx].toInt()
@@ -35,7 +37,7 @@ internal class Frame private constructor(
                 row.append("█").color(ChatColor.of(Color(value, value, value)))
             }
 
-            row.append("\n")
+            if (h + 1 < height) row.append("\n")
         }
 
         return row.create()
