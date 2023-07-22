@@ -18,7 +18,7 @@ static def determineVersion(String defaultVersion) {
 }
 
 group = "dev.mikchan.mcnp"
-version = determineVersion("0.0.1")
+version = determineVersion("1.0.0")
 
 repositories {
     mavenCentral()
